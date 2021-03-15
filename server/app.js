@@ -1,5 +1,5 @@
 const http = require('http');
-
+const fs = require('fs');
 const hostName = '127.0.0.1';
 const port = 3000;
 
@@ -17,17 +17,18 @@ server.listen(port, hostName, () => {
 
 // res.setHeader(name, value);
 // server.listen(port, hostname, backlog, callback);
-
+const indexPage = fs.readFileSync('index.html'); // --> senkron olarak okur.readFile()'ı kullanırsan async olarak çalıştığı için invalid callback func hatası alırsın
+const notFound = fs.readFileSync('notFound.html');
 const server = http.createServer( (req, res) =>{
     if (req.url === '/') {
-        return res.end('HOME PAGE')
+        return res.end(indexPage)
     } else if (req.url === '/about') {
         return res.end('ABOUT PAGE')
     } else if (req.url === '/contact') {
         return res.end('CONTACT PAGE')
     } else {
         res.statusCode = 404;
-        res.end('SAYFA BULUNAMADI');
+        res.end(notFound);
     }
 })
 
