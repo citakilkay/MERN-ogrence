@@ -18,7 +18,7 @@ server.listen(port, hostName, () => {
 // res.setHeader(name, value);
 // server.listen(port, hostname, backlog, callback);
 const indexPage = fs.readFileSync('index.html'); // --> senkron olarak okur.readFile()'ı kullanırsan async olarak çalıştığı için invalid callback func hatası alırsın
-const notFound = fs.readFileSync('notFound.html');
+const notFound = fs.readFileSync('notFound.html'); // belki de lazyloading bunun async'u ile yapılmıştır.
 const server = http.createServer( (req, res) =>{
     if (req.url === '/') {
         return res.end(indexPage)
