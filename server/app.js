@@ -42,8 +42,12 @@ server.listen(port, hostName, () => {
 
 const express = require('express');
 const app = express();
+const path = require('path'); // fileların yolunu sendfile'a falan tanımlatmak için nodejs'teki fs gibi
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(path.resolve(_dirname, 'index.html')); // _dirname şu an bulunulan directory'de ara.
+});
+app.get('/about', (req, res) => {
+    res.sendFile(path.resolve(_dirname, 'about.html')); // _dirname şu an bulunulan directory'de ara.
 });
 
 app.listen(port, hostName, () => {
