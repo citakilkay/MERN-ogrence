@@ -17,6 +17,9 @@ server.listen(port, hostName, () => {
 
 // res.setHeader(name, value);
 // server.listen(port, hostname, backlog, callback);
+
+
+/* Without Express.JS creating a server
 const indexPage = fs.readFileSync('index.html'); // --> senkron olarak okur.readFile()'ı kullanırsan async olarak çalıştığı için invalid callback func hatası alırsın
 const notFound = fs.readFileSync('notFound.html'); // belki de lazyloading bunun async'u ile yapılmıştır.
 const server = http.createServer( (req, res) =>{
@@ -35,3 +38,18 @@ const server = http.createServer( (req, res) =>{
 server.listen(port, hostName, () => {
     console.log(`Server şurada Çalışıyor: http://${hostName}:${port}/`);
 })
+*/
+
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.listen(port, hostName, () => {
+    console.log(`Server şurada Çalışıyor: http://${hostName}:${port}/`)
+});
+
+//app.get( path, callback )
+//app.listen([port[, host[, backlog]]][, callback])
+
