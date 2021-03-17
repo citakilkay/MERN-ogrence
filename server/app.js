@@ -43,12 +43,25 @@ server.listen(port, hostName, () => {
 const express = require('express');
 const app = express();
 const path = require('path'); // fileların yolunu sendfile'a falan tanımlatmak için nodejs'teki fs gibi
+/*
+app.use('/test',(req, res, next) => {
+    console.log('Allah Yar Yar');
+    next();
+})
+*/
+app.use(express.static('public'))
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(_dirname, 'index.html')); // _dirname şu an bulunulan directory'de ara.
+    res.sendFile(path.resolve(__dirname, 'index.html')); // _dirname şu an bulunulan directory'de ara.
 });
 app.get('/about', (req, res) => {
-    res.sendFile(path.resolve(_dirname, 'about.html')); // _dirname şu an bulunulan directory'de ara.
+    res.sendFile(path.resolve(__dirname, 'about.html')); // _dirname şu an bulunulan directory'de ara.
 });
+app.get('/users/:userID/movies/:moviesID', (req, res) => {
+     res.send(
+    `<h1>Kullanıı Adı: ${req.params.userID}</h1>
+    <h1>Film Adı: ${req.params.moviesID}</h1>`
+    )
+})
 
 app.listen(port, hostName, () => {
     console.log(`Server şurada Çalışıyor: http://${hostName}:${port}/`)
