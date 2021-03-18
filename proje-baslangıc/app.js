@@ -4,23 +4,35 @@ const hostName = '127.0.0.1';
 const port = 3000;
 
 const express = require('express');
+const exphbs = require('express-handlebars');
 const app = express();
 const path = require('path');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
+
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
+    res.render('homes/index'); // --> res.render yazdığı için views klasörünü baz alıyor.
+    // --> böyle yazıyorsun ama main.handlebars'tan alır içeriği
+    // res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 app.get('/about', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'about.html'));
+    res.render('homes/about');
+    //res.sendFile(path.resolve(__dirname, 'about.html'));
 });
 app.get('/blog', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'blog.html'));
+    res.render('homes/blog');
+    //res.sendFile(path.resolve(__dirname, 'blog.html'));
 });
 app.get('/contact', (req, res) =>{
-    res.sendFile(path.resolve(__dirname, 'contact.html'))
-})
+    res.render('homes/contact');
+   // res.sendFile(path.resolve(__dirname, 'contact.html'))
+});
+app.get('/blog-single', (req, res) => {
+    res.render('homes/blog-single');
+});
 app.listen(port, hostName, () => {
     console.log(`Server şurada Çalışıyor: http://${hostName}:${port}/`);
 });
