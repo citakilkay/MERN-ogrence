@@ -2,11 +2,18 @@ const http = require('http');
 const fs = require('fs');
 const hostName = '127.0.0.1';
 const port = 3000;
-
 const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
 const path = require('path');
+const mongoose = require('mongoose');
+
+await mongoose.connect('mongodb://127.0.0.1/mongo_baslangic', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+});
 
 app.use(express.static('public'));
 
@@ -33,6 +40,8 @@ app.get('/contact', (req, res) =>{
 app.get('/blog-single', (req, res) => {
     res.render('homes/blog-single');
 });
+console.log(http.createServer);
+//console.log(path.parse(__dirname));
 app.listen(port, hostName, () => {
     console.log(`Server şurada Çalışıyor: http://${hostName}:${port}/`);
 });
