@@ -8,7 +8,7 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 
-await mongoose.connect('mongodb://127.0.0.1/mongo_baslangic', {
+mongoose.connect('mongodb://127.0.0.1/mongo_initdb', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
