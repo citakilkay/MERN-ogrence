@@ -15,8 +15,12 @@ router.get('/:id', (req, res) => {
     });
 });
 router.post('/test', (req, res) => {
-    console.log(req.files);
-    Post.create(req.body);
+    let post_image = req.files.post_image;
+    post_image.mv(path.resolve(__dirname, '../public/img/post-images', post_image.name)); // requestten alınan bu dosyayı publicdeki image klasörüne aktar.ismi de kendi ismi olsun.
+    Post.create({
+        ...req.body,
+        post_image: `/img/post-images/${post_image.name}`
+    });
     res.redirect('/');
 },multipart());
 

@@ -29,6 +29,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// MiddleWare oluşturma ve Kullanma
+const myMiddleWare = (req, res, next) => {
+    console.log("Benim Adim Ilkay");
+    next(); // middleware işlemi bitti ilerleyebilirsin demek 
+}
+app.use('/', myMiddleWare);
 const main = require('./routes/main');
 const posts = require('./routes/posts');
 app.use('/posts', posts);
