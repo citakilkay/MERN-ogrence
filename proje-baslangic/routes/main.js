@@ -12,8 +12,7 @@ router.get('/about', (req, res) => {
     //res.sendFile(path.resolve(__dirname, 'about.html'));
 });
 router.get('/blog', (req, res) => {
-    res.render('homes/blog');
-    Post.find({}).then(posts => {
+    Post.find({}).lean().then((posts) => { // lean'a dikkat
         res.render('homes/blog', {posts: posts});
     });
     //res.sendFile(path.resolve(__dirname, 'blog.html'));
@@ -24,9 +23,6 @@ router.get('/contact', (req, res) => {
 });
 router.get('/blog-single', (req, res) => {
     res.render('homes/blog-single');
-});
-router.get('/posts/new', (req, res) => {
-    res.render('homes/addpost');
 });
 //addpost.handlebars'daki form action attributenda /post/test yazdığı için buraya yönlendirilir.
 /*router.post('/posts/test', (req, res) => { //bu directory'de bir şey post edildiği zaman yani submit gibi bir şey aşağıdakini gerçekleştir.
@@ -41,4 +37,4 @@ router.get('/register', (req, res) => {
     res.render('homes/register');
 });
 
-module.exports = router;
+module.exports = router

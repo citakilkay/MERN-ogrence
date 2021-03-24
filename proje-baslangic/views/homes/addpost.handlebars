@@ -5,7 +5,7 @@
 
             <h1>Create post</h1>
 
-            <form action="/posts/test" method="POST">
+            <form action="/posts/test" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="title">Title <span class="require">*</span></label>
@@ -14,8 +14,13 @@
 
                 <div class="form-group">
                     <label for="description">Contents</label>
-                    <textarea rows="5" class="form-control" name="content"></textarea>
+                    <textarea type="textarea" rows="8" class="form-control" name="content"></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="description">Upload Image</label>
+                    <input type="file" rows="8" class="form-control" name="post_image"></input>
+                </div>
+                
 
                 <div class="form-group">
                     <p><span class="require">*</span> - required fields</p>

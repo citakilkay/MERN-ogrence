@@ -8,6 +8,7 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 mongoose.connect('mongodb://127.0.0.1/mongo_initdb', {
     useNewUrlParser: true,
@@ -15,6 +16,7 @@ mongoose.connect('mongodb://127.0.0.1/mongo_initdb', {
     useFindAndModify: false,
     useCreateIndex: true
 });
+app.use(fileUpload());
 
 app.use(express.static('public')); //static dosyaları istediği zaman public rout'ını kullan
 
