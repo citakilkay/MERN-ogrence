@@ -5,7 +5,11 @@ const uploadFile = require('express-fileupload');
 const multipart = require('connect-multiparty');
 const path = require('path');
 router.get('/new', (req, res) => {
-    res.render('homes/addpost');
+    if(req.session.userId) {
+        // early return
+        return res.render('homes/addpost');
+    } 
+        res.render('homes/login');
 });
 router.get('/:id', (req, res) => {
     console.log(req.params); // --> router için verilen parametreyi yazdırır yani id'yi.

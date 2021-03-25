@@ -4,10 +4,11 @@ const router = express.Router();
 const User = require('../models/User');
 
 router.get('/register', (req, res) => {
+    console.log(req.session);
     res.render('homes/register');
 });
 router.post('/register', (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     User.create(req.body, (error, user) => {
         res.redirect('/');
     });
@@ -20,12 +21,15 @@ router.post('/login', (req, res) => {
     User.findOne({email}, (email, user) => {
         if (user) {
             if(user.password === password) {
+                //user session
+                req.session.userId = user._id;
+                console.log(req.session);
                 res.redirect('/');
             } else {
-                res.redirect('/login');
+                res.redirect('/users/login');
             }
         } else {
-            res.redirect('/register');
+            res.redirect('/users/register');
         }
     });
 })
