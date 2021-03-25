@@ -30,11 +30,5 @@ router.get('/blog-single', (req, res) => {
     console.log(req.body); // requestin body'si
     res.redirect('/');
 });*/
-router.get('/login', (req, res) => {
-    res.render('homes/login');
-});
-router.get('/register', (req, res) => {
-    res.render('homes/register');
-});
 
 module.exports = router

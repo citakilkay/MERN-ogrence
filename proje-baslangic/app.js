@@ -9,6 +9,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const expressSession = require('express-session');
 
 mongoose.connect('mongodb://127.0.0.1/mongo_initdb', {
     useNewUrlParser: true,
@@ -37,8 +38,10 @@ const myMiddleWare = (req, res, next) => {
 app.use('/', myMiddleWare);
 const main = require('./routes/main');
 const posts = require('./routes/posts');
+const users = require('./routes/users');
 app.use('/posts', posts);
 app.use('/', main); // --> slash istediği zaman main routerını kullan
+app.use('/users', users);
 
 
 /*

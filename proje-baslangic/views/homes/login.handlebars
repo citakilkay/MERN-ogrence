@@ -8,10 +8,10 @@
         </div>
 
         <!-- Login Form -->
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+        <form action="/users/login" method="POST">
+            <input type="text" id="login" class="fadeIn second my-5 w-50" style="height: 50px;" name="email" placeholder="login">
+            <input type="text" id="password" class="fadeIn third my-5 w-50" style="height: 50px;" name="password" placeholder="password">
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
         </form>
 
         <!-- Remind Passowrd -->
