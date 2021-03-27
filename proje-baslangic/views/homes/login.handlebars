@@ -6,7 +6,9 @@
         <div class="fadeIn first">
             <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
         </div>
-
+        {{#if sessionFlash.message}}
+        <div class="{{sessionFlash.type}}">{{session.sessionFlash.message}}</div>
+        {{/if}}
         <!-- Login Form -->
         <form action="/users/login" method="POST">
             <input type="text" id="login" class="fadeIn second my-5 w-50" style="height: 50px;" name="email" placeholder="login">
