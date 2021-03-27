@@ -23,8 +23,14 @@ router.post('/test', (req, res) => {
     Post.create({
         ...req.body,
         post_image: `/img/post-images/${post_image.name}`
+    }, (err, post) => {
+        req.session.sessionFlash = {
+            type: 'alert alert-success',
+            messsage: 'Postunuz başarılı bir şekilde oluşturuldu.'
+        }
     });
-    res.redirect('/');
+    //console.log(req.session);
+    res.redirect('/blog');
 },multipart());
 
 module.exports = router
