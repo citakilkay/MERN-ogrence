@@ -37,4 +37,9 @@ router.post('/login', (req, res) => {
         }
     });
 })
+router.get('/logout', (req, res) => {
+    req.session.destroy(() => { // log out olduğu zaman session'u kapat
+        res.redirect('/');
+    });
+});
 module.exports = router;

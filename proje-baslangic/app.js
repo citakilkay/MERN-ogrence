@@ -44,18 +44,36 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// Display Link MiddleWare
+
+app.use((req, res, next) => {
+    const { userId } = req.session
+    if(userId) {
+        res.locals = {
+            displayLink : true
+        }
+    } else {
+        res.locals = {
+            displayLink : false
+        }
+    }
+    next();
+});
+
 // MiddleWare oluşturma ve Kullanma
 const myMiddleWare = (req, res, next) => {
-    console.log("Benim Adim Ilkay");
+    console.log("Middleware Deneme");
     next(); // middleware işlemi bitti ilerleyebilirsin demek 
 }
 app.use('/', myMiddleWare);
 const main = require('./routes/main');
 const posts = require('./routes/posts');
 const users = require('./routes/users');
+const admin = require('./routes/admin');
 app.use('/posts', posts);
 app.use('/', main); // --> slash istediği zaman main routerını kullan
 app.use('/users', users);
+app.use('/admin', admin);
 
 
 /*
